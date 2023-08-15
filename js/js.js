@@ -68,15 +68,22 @@ function printWeather(data) {
 
     weatherContentEl.innerHTML =
         `
-        <div> ${data.name}, ${data.sys.country}  </div>
-        <div> ${time} </div>
-        <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].dexcription}" ></img>
-        <div> ${Math.round(data.main.temp - 273.15)}° </div>
-        <div> ${data.weather[0].description}  </div>
-        <div> Feels like: ${Math.round(data.main.feels_like - 273.15)}° </div>
-        <div> Wind: ${Math.round(data.wind.speed)} km/h, at ${Math.round(data.wind.deg)}° </div>
-        <div> Humidity: ${Math.round(data.main.humidity)}° </div>
-        
+        <div class="datetime"> 
+            <span>${data.name}, ${data.sys.country}</span> <br>
+            ${time} 
+        </div>
+        <div class="weathericon">
+            <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].dexcription}" >
+            </img>
+        </div>
+        <div class="currenttemp"> 
+            ${Math.round(data.main.temp - 273.15)}°  <br>
+        </div>
+        <div class="weatherinfo"> 
+            <span>${data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1)}</span> <br>
+            Wind: ${Math.round(data.wind.speed)} km/h, at ${Math.round(data.wind.deg)}° <br>
+            Humidity: ${Math.round(data.main.humidity)}% 
+        </div>
         
         `;
 
@@ -84,7 +91,7 @@ function printWeather(data) {
 
 
 
-    
+
 
 
 }
@@ -107,23 +114,30 @@ function printWeather(data) {
 
 
 function getTime() {
-    var time = new Date();
+
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+
+    var t = new Date();
     let hour = "";
     let min = "";
 
-    if (time.getHours() < 10) {
-         hour = "0" + time.getHours();
-    } else{
-         hour = time.getHours();
+    if (t.getHours() < 10) {
+        hour = "0" + t.getHours();
+    } else {
+        hour = t.getHours();
     }
 
-    if (time.getMinutes() < 10) {
-         min = "0" + time.getMinutes();
-    } else{
-         min = time.getMinutes();
+    if (t.getMinutes() < 10) {
+        min = "0" + t.getMinutes();
+    } else {
+        min = t.getMinutes();
     }
 
-    let t = hour + ":" + min;
+    //returns name of current day
+    let day = weekday[t.getDay()];
 
-    return t;
+    let datetime = day + ", " + hour + ":" + min;
+
+    return datetime;
 }

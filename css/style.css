@@ -1,7 +1,14 @@
 /* html{
     background-color: rgb(255, 255, 255);
 } */
+*{
+    font-family: 'Nunito', sans-serif;
+}
+html {
+    font-size: 62.5%;
+    /* 16px = 10px*/
 
+}
 main{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     height: 100vh;
@@ -14,5 +21,31 @@ main{
 
 
 @media screen and (max-width: 992px) {
+
+
+        .datetime{
+            font-size: 2.5em;
+            font-weight: 400;
+        }
+        .datetime span{
+            font-size: 0.7em;
+            font-weight: 400;
+        }
+        .weathericon img{
+            transform:scale(1.2);
+        }
+        .currenttemp{
+            font-size: 3em;
+            margin-bottom: 1em;
+            font-weight: 600;
+        }
+       
+        .weatherinfo{
+            font-size: 1.3em;
+        }
+        .weatherinfo span{
+            font-size: 1.8em;
+        }
     
+       
   }
