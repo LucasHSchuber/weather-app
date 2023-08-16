@@ -53,14 +53,20 @@
 
 <body>
 
-    <main id="main">
-
+    <header>
         <form class="form" id="menuForm">
             <label for="city">City name</label>
             <input class="" type="text" name="city" id="city"><br>
             <button class=" add-btn" type="submit" id="submit">Check weather</button><br><br>
-
         </form>
+    </header>
+
+    <main id="main">
+
+        <video id="background-video" playsinline autoplay muted loop poster="images/kappa.png">
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
         <div id="weathercontent"></div>
 

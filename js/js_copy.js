@@ -83,6 +83,7 @@ function start2(data) {
                     .catch(err => console.log(err))
             }
         })
+        
 }
 
 
@@ -98,10 +99,15 @@ let weatherContentEl = document.getElementById("weathercontent");
 function printWeather(data) {
 
     let time = getTime();
-    // let bgcolor = bgColor();
-    // console.log(cityname + "hejhej");
+
     console.log(data);
     console.log(time);
+ 
+
+    let weatherid = data.list[0].weather[0].id;
+    console.log(weatherid);
+    bg(weatherid);
+
 
     console.log(data.city.country);
 
@@ -140,39 +146,66 @@ function printWeather(data) {
                  ${data.list[2].dt_txt.substring(11, 16)} <br>
             </div>
             <div>
+                 <img 
+                     src="http://openweathermap.org/img/wn/${data.list[3].weather[0].icon}.png" alt="${data.list[3].weather[0].description}" >
+                 </img>
+                 ${Math.round(data.list[3].main.temp - 273.15)}° <br>
+                 ${data.list[3].dt_txt.substring(11, 16)} <br>
             </div>
             <div>
+                 <img 
+                     src="http://openweathermap.org/img/wn/${data.list[4].weather[0].icon}.png" alt="${data.list[4].weather[0].description}" >
+                 </img>
+                 ${Math.round(data.list[4].main.temp - 273.15)}° <br>
+                 ${data.list[4].dt_txt.substring(11, 16)} <br>
             </div>
         </div>
         
         `;
 
+}
 
 
+//bg video depending on weather-id
+function bg(weatherid){
 
-
-
-
+    console.log(weatherid);
+    if (weatherid >= 200 && weatherid <= 232 ) {
+        document.getElementById("background-video").src = "videos/thunderstorm.mp4";
+    }  else if (weatherid >= 500  && weatherid <= 531) {
+        document.getElementById("background-video").src = "videos/rain.mp4";
+    } else if (weatherid >= 600  && weatherid <= 622) {
+        document.getElementById("background-video").src = "videos/snow.mp4";
+    } else if (weatherid = 800) {
+       document.getElementById("background-video").src = "videos/sunny.mp4";
+    } else if (weatherid >= 803  && weatherid <= 804) {
+        document.getElementById("background-video").src = "videos/overcast_clouds.mp4";
+    } else if (weatherid >= 801  && weatherid <= 802) {
+        document.getElementById("background-video").src = "videos/scattered_clouds.mp4";
+    } 
 
 }
 
 
 
-// function bgColor(){
 
+// function bgColor(weatherid){
 
-//     if (data.weather[0].description = "rain" || "shower rain") {
-//         document.getElementById("main").style.backgroundImage = "linear-gradient(#CBFFEC, #fff)";
-//     } else if (data.weather[0].description = "clear sky" || "few clouds" || "broken clouds" || "scattered clouds") {
-//         document.getElementById("main").style.backgroundImage = "linear-gradient(#FFEA9F, #fff)";
-//     } else if (data.weather[0].description = "snow") {
-//         document.getElementById("main").style.backgroundImage = "linear-gradient(#000, #fff)";
+//     console.log(weatherid);
+//     if (weatherid >= 500 && weatherid <= 531 ) {
+//         document.getElementById("main").style.backgroundColor = "blue";
+//     }  else if (weatherid >= 600  && weatherid <= 622) {
+//         document.getElementById("main").style.backgroundColor = "red";
+//     } else if (weatherid = 800) {
+//         document.getElementById("main").style.backgroundColor = "yellow";
+//     } else if (weatherid >= 801  && weatherid <= 804) {
+//         document.getElementById("main").style.backgroundColor = "green";
 //     }
 
 // }
 
 
-
+// get day and time
 function getTime() {
 
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
