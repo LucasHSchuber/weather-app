@@ -1,21 +1,25 @@
 "use strict";
 
+// onload functions
+window.onload = init;
 
-const b = document.getElementById("test");
-const messageEl = document.getElementById("message");
-
-
-// window.onload = init;
-
-// function init() {
-//     // läs in dishes
-//     start();
-// }
+function init() {
+    // läs in dishes
+    datetime();
+}
 
 
+// prints date and time in header on start
+let headerdtel = document.getElementById("headerdt");
 
+function datetime() {
+
+    let datetime = getTime();
+    headerdtel.innerHTML = datetime;
+}
+
+// search function - gets input value
 function search() {
-    // event.preventDefault(); //hindrar deafult (i detta fall att ladda om/uppdatera sidan vid sumbit)
 
     let cityname = cityInput.value;
 
@@ -59,9 +63,7 @@ function start(event) {
 function start2(data) {
     // event.preventDefault(); //hindrar deafult (i detta fall att ladda om/uppdatera sidan vid sumbit)
 
-
-    console.log(data.coord.lon);
-    console.log(data.coord.lat);
+    weathernow(data);
 
     let lon = data.coord.lon;
     let lat = data.coord.lat;
@@ -78,112 +80,147 @@ function start2(data) {
             } else if (Response.status === 200) {
 
                 return Response.json()
-                    // .then(data => console.log(data))
-                    .then(data => printWeather(data))
+                    .then(data2 => printWeather(data2))
                     .catch(err => console.log(err))
             }
         })
-        
+
 }
 
 
 
+let weathercontentel = document.getElementById("weathercontent");
+let datetimeel = document.getElementById("datetime");
+let weathericonel = document.getElementById("weathericon");
+let currenttempel = document.getElementById("currenttemp");
+let weatherinfoel = document.getElementById("weatherinfo");
+let futureforecastel = document.getElementById("futureforecast");
 
 
+function weathernow(data) {
+
+    console.log(data);
+
+    weathericonel.innerHTML =
+        `
+            <img 
+                src="http://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png" alt="${data.weather[0].description}" >
+            </img>
+         `;
+
+    currenttempel.innerHTML =
+        `
+             ${Math.round(data.main.temp - 273.15)}°  <br>
+         `;
+
+    weatherinfoel.innerHTML =
+        `
+         <span>${data.weather[0].description.charAt(0).toUpperCase() + data.weather[0].description.slice(1)}</span> <br>
+         Wind: ${Math.round(data.wind.speed)} km/h, at ${Math.round(data.wind.deg)}° <br>
+         Humidity: ${Math.round(data.main.humidity)}% 
+         `;
+}
 
 
-
-let weatherContentEl = document.getElementById("weathercontent");
 
 // prints weather-data to screen
 function printWeather(data) {
 
     let time = getTime();
-
     console.log(data);
-    console.log(time);
- 
 
     let weatherid = data.list[0].weather[0].id;
-    console.log(weatherid);
     bg(weatherid);
 
-
-    console.log(data.city.country);
-
-    weatherContentEl.innerHTML =
+    datetimeel.innerHTML =
         `
-        <div class="datetime"> 
             <span>${data.city.name}, ${data.city.country}</span> <br>
             ${time} 
-        </div>
-        <div class="weathericon">
+        ` ;
+
+    futureforecastel.innerHTML =
+        `
+        <div class="overscrollweather">
+        <div>
             <img 
-                src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@4x.png" alt="${data.list[0].weather[0].description}" >
+                src="http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}.png" alt="${data.list[0].weather[0].description}" >
             </img>
+            ${Math.round(data.list[0].main.temp - 273.15)}° <br>
+            ${data.list[0].dt_txt.substring(11, 16)} <br>
         </div>
-        <div class="currenttemp"> 
-            ${Math.round(data.list[0].main.temp - 273.15)}°  <br>
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}.png" alt="${data.list[1].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[1].main.temp - 273.15)}° <br>
+            ${data.list[1].dt_txt.substring(11, 16)} <br>
         </div>
-        <div class="weatherinfo"> 
-            <span>${data.list[0].weather[0].description.charAt(0).toUpperCase() + data.list[0].weather[0].description.slice(1)}</span> <br>
-            Wind: ${Math.round(data.list[0].wind.speed)} km/h, at ${Math.round(data.list[0].wind.deg)}° <br>
-            Humidity: ${Math.round(data.list[0].main.humidity)}% 
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[2].weather[0].icon}.png" alt="${data.list[2].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[2].main.temp - 273.15)}° <br>
+            ${data.list[2].dt_txt.substring(11, 16)} <br>
         </div>
-        <div class="futureforecast">
-            <div>
-                <img 
-                    src="http://openweathermap.org/img/wn/${data.list[1].weather[0].icon}.png" alt="${data.list[1].weather[0].description}" >
-                </img>
-                ${Math.round(data.list[1].main.temp - 273.15)}° <br>
-                ${data.list[1].dt_txt.substring(11, 16)} <br>
-            </div>
-            <div>
-                <img 
-                     src="http://openweathermap.org/img/wn/${data.list[2].weather[0].icon}.png" alt="${data.list[2].weather[0].description}" >
-                 </img>
-                 ${Math.round(data.list[2].main.temp - 273.15)}° <br>
-                 ${data.list[2].dt_txt.substring(11, 16)} <br>
-            </div>
-            <div>
-                 <img 
-                     src="http://openweathermap.org/img/wn/${data.list[3].weather[0].icon}.png" alt="${data.list[3].weather[0].description}" >
-                 </img>
-                 ${Math.round(data.list[3].main.temp - 273.15)}° <br>
-                 ${data.list[3].dt_txt.substring(11, 16)} <br>
-            </div>
-            <div>
-                 <img 
-                     src="http://openweathermap.org/img/wn/${data.list[4].weather[0].icon}.png" alt="${data.list[4].weather[0].description}" >
-                 </img>
-                 ${Math.round(data.list[4].main.temp - 273.15)}° <br>
-                 ${data.list[4].dt_txt.substring(11, 16)} <br>
-            </div>
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[3].weather[0].icon}.png" alt="${data.list[3].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[3].main.temp - 273.15)}° <br>
+            ${data.list[3].dt_txt.substring(11, 16)} <br>
         </div>
-        
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[4].weather[0].icon}.png" alt="${data.list[4].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[4].main.temp - 273.15)}° <br>
+            ${data.list[4].dt_txt.substring(11, 16)} <br>
+        </div>
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[5].weather[0].icon}.png" alt="${data.list[5].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[5].main.temp - 273.15)}° <br>
+            ${data.list[5].dt_txt.substring(11, 16)} <br>
+        </div>
+        <div>
+            <img 
+                src="http://openweathermap.org/img/wn/${data.list[6].weather[0].icon}.png" alt="${data.list[6].weather[0].description}" >
+            </img>
+            ${Math.round(data.list[6].main.temp - 273.15)}° <br>
+            ${data.list[6].dt_txt.substring(11, 16)} <br>
+        </div>
+        <div>
+        <img 
+            src="http://openweathermap.org/img/wn/${data.list[7].weather[0].icon}.png" alt="${data.list[7].weather[0].description}" >
+        </img>
+        ${Math.round(data.list[7].main.temp - 273.15)}° <br>
+        ${data.list[7].dt_txt.substring(11, 16)} <br>
+        </div>
+        </div>
         `;
 
 }
 
 
 //bg video depending on weather-id
-function bg(weatherid){
+function bg(weatherid) {
 
     console.log(weatherid);
-    if (weatherid >= 200 && weatherid <= 232 ) {
-        document.getElementById("background-video").src = "videos/thunderstorm.mp4";
-    }  else if (weatherid >= 500  && weatherid <= 531) {
+    if (200 <= weatherid && weatherid <= 232) {
+        document.getElementById("background-video").src = "videos/thunderstorm2.mp4";
+        document.getElementById("background-video").vid.playbackRate = 0.5;
+    } else if (500 <= weatherid && weatherid <= 531) {
         document.getElementById("background-video").src = "videos/rain.mp4";
-    } else if (weatherid >= 600  && weatherid <= 622) {
+    } else if (weatherid <= 600 && weatherid <= 622) {
         document.getElementById("background-video").src = "videos/snow.mp4";
-    } else if (weatherid = 800) {
-       document.getElementById("background-video").src = "videos/sunny.mp4";
-    } else if (weatherid >= 803  && weatherid <= 804) {
+    } else if (803 <= weatherid && weatherid <= 804) {
         document.getElementById("background-video").src = "videos/overcast_clouds.mp4";
-    } else if (weatherid >= 801  && weatherid <= 802) {
+    } else if (801 <= weatherid && weatherid <= 802) {
         document.getElementById("background-video").src = "videos/scattered_clouds.mp4";
-    } 
-
+    } else if (weatherid == 800) {
+        document.getElementById("background-video").src = "videos/sunny.mp4";
+    }
 }
 
 
@@ -234,3 +271,18 @@ function getTime() {
 
     return datetime;
 }
+
+
+
+
+
+
+
+function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }

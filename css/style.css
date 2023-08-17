@@ -17,7 +17,7 @@ main {
 }
 
 header {
-    height: 6em;
+    height: fit-content;
     background-color: #323234;
 }
 
@@ -27,48 +27,117 @@ header {
 @media screen and (max-width: 992px) {
 
 
-    #weathercontent {
-        text-align: center;
-        padding: 5em 5em;
+    /* menu */
+
+    .topnav {
+        overflow: hidden;
+        background-color: #1f1f1f;
+        position: relative;
     }
 
-    .datetime {
+    .topnav #myLinks {
+        display: none;
+        height: 5.7em;
+    }
+
+    .topnav a {
+        color: white;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+
+    .topnav a.icon {
+        background-color: #1f1f1f;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .headercontent {
+        color: white;
+    }
+
+
+    .btn {
+        background-color: transparent;
+        border: none;
+        margin: auto 0;
+    }
+
+    .searchbtn {
+        background-color: #6e6e6e;
+        border: none;
+        color: white;
+
+    }
+
+    .form {
+        background-color: white;
+        display: grid;
+        grid-template-columns: 75% 25%;
+        height: 5.5em;
+        border: 2px #6e6e6e solid;
+
+    }
+
+    .form input {
+        outline: none;
+        border: none;
+        box-shadow: inset 0px 0px 0px 0px red;
+        height: 100%;
+        padding: 2em;
+    }
+
+    #weathercontent {
+        text-align: center;
+        padding: 5em 2em;
+    }
+
+    #datetime {
         font-size: 2.5em;
         font-weight: 400;
     }
 
-    .datetime span {
+    #datetime span {
         font-size: 0.7em;
         font-weight: 400;
     }
 
-    .weathericon img {
+    #weathericon img {
         transform: scale(1.2);
     }
 
-    .currenttemp {
+    #currenttemp {
         font-size: 3em;
         margin-bottom: 1em;
         font-weight: 600;
     }
 
-    .weatherinfo {
+    #weatherinfo {
         font-size: 1.3em;
     }
 
-    .weatherinfo span {
+    #weatherinfo span {
         font-size: 1.8em;
     }
 
 
-    .futureforecast {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-gap: 0.2em;
-        margin-top: 3em;
+    #futureforecast {
+        overflow: auto;
     }
 
-
+    .overscrollweather {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-gap: 0em;
+        margin-top: 4em;
+        overscroll-behavior-x: contain;
+        width: 140%;
+        overflow: auto;
+    }
 
     #background-video {
         width: 100vw;
@@ -81,7 +150,22 @@ header {
         bottom: 0;
         z-index: -1;
         opacity: 0.4;
-      }
+    }
 
-      
+
+
+
+
+
+
+
+
+
+}
+
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
 }

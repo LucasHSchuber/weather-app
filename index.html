@@ -53,22 +53,67 @@
 
 <body>
 
-    <header>
-        <form class="form" id="menuForm">
+    <header class="header">
+        <!-- <form class="form" id="menuForm">
             <label for="city">City name</label>
             <input class="" type="text" name="city" id="city"><br>
             <button class=" add-btn" type="submit" id="submit">Check weather</button><br><br>
-        </form>
+        </form> -->
+        <!-- <div class="headercontent" id="headerdt"></div>
+
+
+        <div class="dropdown headercontent">
+            <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false"><i class="menudots fa-solid fa-ellipsis-vertical"></i></button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <form class="form" id="menuForm">
+                    <label for="city">City name</label>
+                    <input class="" type="text" name="city" id="city"><br>
+                    <button class=" add-btn" type="submit" id="submit">Check weather</button><br><br>
+                </form>
+            </div>
+        </div> -->
+
+
+        <div class="topnav">
+            <a>
+                <div class="headercontent" id="headerdt"></div>
+            </a>
+
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="menudots fa-solid fa-ellipsis-vertical"></i>
+            </a>
+
+            <div id="myLinks">
+                <form class="form" id="menuForm">
+                    <input class="" placeholder="search for city..." type="text" name="city" id="city">
+                    <button class=" searchbtn" type="submit" id="submit">Check weather</button><br><br>
+                </form>
+            </div>
+        </div>
+
     </header>
 
     <main id="main">
 
-        <video id="background-video" playsinline autoplay muted loop poster="images/kappa.png">
+        <video id="background-video" playsinline autoplay muted loop poster="">
             <source src="" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
-        <div id="weathercontent"></div>
+        <div id="weathercontent">
+
+            <div id="datetime"></div>
+
+            <div id="weathericon"></div>
+
+            <div id="currenttemp"></div>
+
+            <div id="weatherinfo"></div>
+
+            <div id="futureforecast"></div>
+
+        </div>
 
     </main>
 
