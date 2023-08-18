@@ -54,26 +54,6 @@
 <body>
 
     <header class="header">
-        <!-- <form class="form" id="menuForm">
-            <label for="city">City name</label>
-            <input class="" type="text" name="city" id="city"><br>
-            <button class=" add-btn" type="submit" id="submit">Check weather</button><br><br>
-        </form> -->
-        <!-- <div class="headercontent" id="headerdt"></div>
-
-
-        <div class="dropdown headercontent">
-            <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false"><i class="menudots fa-solid fa-ellipsis-vertical"></i></button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <form class="form" id="menuForm">
-                    <label for="city">City name</label>
-                    <input class="" type="text" name="city" id="city"><br>
-                    <button class=" add-btn" type="submit" id="submit">Check weather</button><br><br>
-                </form>
-            </div>
-        </div> -->
-
 
         <div class="topnav">
             <a>
@@ -87,7 +67,15 @@
             <div id="myLinks">
                 <form class="form" id="menuForm">
                     <input class="" placeholder="search for city..." type="text" name="city" id="city">
-                    <button class=" searchbtn" type="submit" id="submit">Check weather</button><br><br>
+                    <button class="searchbtn" type="submit" id="submit"><i
+                            class="fa-solid fa-lg fa-magnifying-glass-location"></i></button><br><br>
+                </form>
+
+                <form class="form-ll" id="menuForm">
+                    <input class="" placeholder="lat" type="lat" name="lat" id="lat">
+                    <input class="" placeholder="long" type="long" name="long" id="long">
+                    <button class="searchbtn" type="submit" id="submit-ll"><i
+                            class="fa-solid fa-lg fa-magnifying-glass-location"></i></button><br><br>
                 </form>
             </div>
         </div>
@@ -111,8 +99,14 @@
 
             <div id="weatherinfo"></div>
 
+            <h4 id="weathertitle"></h4>
             <div id="futureforecast"></div>
 
+            <h4 id="raintitle"></h4>
+            <div id="futurerain"></div>
+
+
+           
         </div>
 
     </main>
@@ -121,7 +115,10 @@
 
     </footer>
 
-    <script src="js/js_copy.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/geoloc.js"></script>
+    <script src="js/latlong.js"></script>
+    <script src="js/cityname.js"></script>
 
 </body>
 

@@ -1,36 +1,20 @@
 "use strict";
 
-// onload functions
-window.onload = init;
-
-function init() {
-    // läs in dishes
-    datetime();
-}
 
 
-// prints date and time in header on start
-let headerdtel = document.getElementById("headerdt");
 
-function datetime() {
-
-    let datetime = getTime();
-    headerdtel.innerHTML = datetime;
-}
-
+const cityInput = document.getElementById("city");
 // search function - gets input value
 function search() {
 
     let cityname = cityInput.value;
-
     return cityname;
     // checkWeather(cityname);
 }
 
 
-const cityInput = document.getElementById("city");
-const SubmitBtn = document.getElementById("submit");
 
+const SubmitBtn = document.getElementById("submit");
 SubmitBtn.addEventListener("click", start);
 
 function start(event) {
@@ -59,11 +43,10 @@ function start(event) {
 }
 
 
-
 function start2(data) {
     // event.preventDefault(); //hindrar deafult (i detta fall att ladda om/uppdatera sidan vid sumbit)
 
-    weathernow(data);
+    weathernow(data); //sending current weather data
 
     let lon = data.coord.lon;
     let lat = data.coord.lat;
@@ -95,6 +78,10 @@ let weathericonel = document.getElementById("weathericon");
 let currenttempel = document.getElementById("currenttemp");
 let weatherinfoel = document.getElementById("weatherinfo");
 let futureforecastel = document.getElementById("futureforecast");
+let futurerainel = document.getElementById("futurerain");
+
+let weathertitleel = document.getElementById("weathertitle");
+let raintitleel = document.getElementById("raintitle");
 
 
 function weathernow(data) {
@@ -126,8 +113,9 @@ function weathernow(data) {
 // prints weather-data to screen
 function printWeather(data) {
 
-    let time = getTime();
     console.log(data);
+
+    let time = getTime();
 
     let weatherid = data.list[0].weather[0].id;
     bg(weatherid);
@@ -136,6 +124,11 @@ function printWeather(data) {
         `
             <span>${data.city.name}, ${data.city.country}</span> <br>
             ${time} 
+        ` ;
+
+        weathertitleel.innerHTML =
+        `
+            Weather: 
         ` ;
 
     futureforecastel.innerHTML =
@@ -200,13 +193,100 @@ function printWeather(data) {
         </div>
         `;
 
+
+
+        raintitleel.innerHTML =
+        `
+            Wind: 
+        ` ;
+
+        futurerainel.innerHTML =
+        `
+        <div class="overscrollweather">
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[0].dt_txt.substring(11, 16)} <br>
+                ${data.list[0].wind.speed} km/h <br>
+                ${data.list[0].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[1].dt_txt.substring(11, 16)} <br>
+                ${data.list[1].wind.speed} km/h <br>
+                ${data.list[1].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[2].dt_txt.substring(11, 16)} <br>
+                ${data.list[2].wind.speed} km/h <br>
+                ${data.list[2].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[3].dt_txt.substring(11, 16)} <br>
+                ${data.list[3].wind.speed} km/h <br>
+                ${data.list[3].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[4].dt_txt.substring(11, 16)} <br>
+                ${data.list[4].wind.speed} km/h <br>
+                ${data.list[4].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[5].dt_txt.substring(11, 16)} <br>
+                ${data.list[5].wind.speed} km/h <br>
+                ${data.list[5].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[6].dt_txt.substring(11, 16)} <br>
+                ${data.list[6].wind.speed} km/h <br>
+                ${data.list[6].wind.deg}°
+            </div>
+        </div>
+        <div>
+            <i class='fa-solid fa-2x fa-wind' style="padding:0.5em;"></i>
+            <div>
+                ${data.list[7].dt_txt.substring(11, 16)} <br>
+                ${data.list[7].wind.speed} km/h <br>
+                ${data.list[7].wind.deg}°
+            </div>
+        </div>
+        
+        </div>
+        `;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 //bg video depending on weather-id
 function bg(weatherid) {
 
-    console.log(weatherid);
     if (200 <= weatherid && weatherid <= 232) {
         document.getElementById("background-video").src = "videos/thunderstorm2.mp4";
         document.getElementById("background-video").vid.playbackRate = 0.5;
@@ -223,23 +303,6 @@ function bg(weatherid) {
     }
 }
 
-
-
-
-// function bgColor(weatherid){
-
-//     console.log(weatherid);
-//     if (weatherid >= 500 && weatherid <= 531 ) {
-//         document.getElementById("main").style.backgroundColor = "blue";
-//     }  else if (weatherid >= 600  && weatherid <= 622) {
-//         document.getElementById("main").style.backgroundColor = "red";
-//     } else if (weatherid = 800) {
-//         document.getElementById("main").style.backgroundColor = "yellow";
-//     } else if (weatherid >= 801  && weatherid <= 804) {
-//         document.getElementById("main").style.backgroundColor = "green";
-//     }
-
-// }
 
 
 // get day and time
@@ -265,24 +328,9 @@ function getTime() {
     }
 
     //returns name of current day
-    let day = weekday[t.getDay()];
+    let dayname = weekday[t.getDay()];
 
-    let datetime = day + ", " + hour + ":" + min;
+    let datetime = dayname + ", " + hour + ":" + min;
 
     return datetime;
 }
-
-
-
-
-
-
-
-function myFunction() {
-    var x = document.getElementById("myLinks");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-  }
