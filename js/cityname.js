@@ -79,6 +79,9 @@ let currenttempel = document.getElementById("currenttemp");
 let weatherinfoel = document.getElementById("weatherinfo");
 let futureforecastel = document.getElementById("futureforecast");
 let futurerainel = document.getElementById("futurerain");
+let weatherinfoboxel = document.getElementById("weatherinfobox");
+
+
 
 let weathertitleel = document.getElementById("weathertitle");
 let raintitleel = document.getElementById("raintitle");
@@ -106,7 +109,43 @@ function weathernow(data) {
          Wind: ${Math.round(data.wind.speed)} km/h, at ${Math.round(data.wind.deg)}° <br>
          Humidity: ${Math.round(data.main.humidity)}% 
          `;
+
+    // sunrise time converter
+    let sec = data.sys.sunrise;
+    let date = new Date(sec * 1000);
+    let time_sunrise = date.toLocaleTimeString();
+    // sunset time converter
+    let sec2 = data.sys.sunset;
+    let date2 = new Date(sec2 * 1000);
+    let time_sunset = date2.toLocaleTimeString();
+
+    weatherinfoboxel.innerHTML =
+        `
+        <div class="box1">
+            <div>
+                <img
+                    src="images/sunrise2.png" alt="${time_sunrise} style="height:20px; width:20px;" >
+                </img>
+                <div style="margin-top:0.5em">${time_sunrise.substring(0, 5)}</div>
+            </div>
+
+            <div>
+                <img
+                    src="images/sunset2.png" alt="${time_sunset} style="height:20px; width:20px;" >
+                </img>
+                <div style="margin-top:0.5em">${time_sunset.substring(0, 5)}</div>
+            </div>
+        </div> 
+
+        <div class="box2">
+            Feels like: <br>
+            ${data.main.feels_like}
+        </div> 
+        `;
+
 }
+
+
 
 
 
@@ -126,7 +165,7 @@ function printWeather(data) {
             ${time} 
         ` ;
 
-        weathertitleel.innerHTML =
+    weathertitleel.innerHTML =
         `
             Weather: 
         ` ;
@@ -195,12 +234,12 @@ function printWeather(data) {
 
 
 
-        raintitleel.innerHTML =
+    raintitleel.innerHTML =
         `
             Wind: 
         ` ;
 
-        futurerainel.innerHTML =
+    futurerainel.innerHTML =
         `
         <div class="overscrollweather">
         <div>

@@ -37,8 +37,17 @@ header {
 
     .topnav #myLinks {
         display: none;
-        height: 11.2em;
+        /* height: 11.2em; */
+    }
 
+    #myLinks a{
+        color: white;
+        background-color: inherit;
+    }
+
+    #myLinks a:hover{
+        color: white;
+        background-color: #525252;
     }
 
     .topnav a {
@@ -70,9 +79,9 @@ header {
     }
 
     .searchbtn {
-        background-color: #6e6e6e;
+        background-color: #f6b88f;
         border: none;
-        color: white;
+        color: rgb(35, 35, 35);
         font-size: 1.6em;
     }
 
@@ -81,7 +90,7 @@ header {
         display: grid;
         grid-template-columns: 75% 25%;
         height: 5.5em;
-        border: 2px #6e6e6e solid;
+        /* border: 2px #6e6e6e solid; */
     }
 
     .form-ll {
@@ -89,26 +98,28 @@ header {
         display: grid;
         grid-template-columns: 37.5% 37.5% 25%;
         height: 5.7em;
-        border: 2px #6e6e6e solid;
+        /* border: 2px #6e6e6e solid; */
     }
 
     .form input {
         outline: none;
         border: none;
+        border-right: 1px solid black;
         box-shadow: inset 0px 0px 0px 0px rgb(255, 255, 255);
         height: 100%;
         padding: 1em;
         font-size: 1.6em;
-        background-color: #ececec;
+        background-color: #f6f6f6;
     }
     .form-ll input {
         outline: none;
         border: none;
+        border-right: 1px solid black;
         box-shadow: inset 0px 0px 0px 0px red;
         height: 100%;
         padding: 1em;
         font-size: 1.6em;
-        background-color: #ececec;
+        background-color: #f6f6f6;
 
     }
 
@@ -141,13 +152,30 @@ header {
 
     #weatherinfo {
         font-size: 1.3em;
-        margin-bottom: 3em;
+        margin-bottom: 2em;
     }
 
+    #weatherinfobox{
+        font-size: 1.3em;
+        margin-bottom: 3em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0.5em;
+        padding: 0 2em;
+    }
+
+    .box1, .box2{
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
+        padding: 2em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
     #weatherinfo span {
         font-size: 1.8em;
     }
 
+  
 
     #futureforecast, #futurerain {
         overflow: auto;

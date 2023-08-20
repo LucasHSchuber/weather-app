@@ -60,23 +60,25 @@
                 <div class="headercontent" id="headerdt"></div>
             </a>
 
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <a href="javascript:void(0);" class="icon" onclick="openDropdown()">
                 <i class="menudots fa-solid fa-ellipsis-vertical"></i>
             </a>
 
             <div id="myLinks">
                 <form class="form" id="menuForm">
                     <input class="" placeholder="search for city..." type="text" name="city" id="city">
-                    <button class="searchbtn" type="submit" id="submit"><i
-                            class="fa-solid fa-lg fa-magnifying-glass-location"></i></button><br><br>
+                    <button class="searchbtn" type="submit" id="submit">
+                        <i class="fa-solid fa-arrow-right-long"></i></button><br><br>
                 </form>
 
                 <form class="form-ll" id="menuForm">
                     <input class="" placeholder="lat" type="lat" name="lat" id="lat">
                     <input class="" placeholder="long" type="long" name="long" id="long">
-                    <button class="searchbtn" type="submit" id="submit-ll"><i
-                            class="fa-solid fa-lg fa-magnifying-glass-location"></i></button><br><br>
+                    <button class="searchbtn" type="submit" id="submit-ll">
+                        <i class="fa-solid fa-arrow-right-long"></i></button><br><br>
                 </form>
+                <a>Start</a>
+                <a>About</a>
             </div>
         </div>
 
@@ -99,14 +101,14 @@
 
             <div id="weatherinfo"></div>
 
+            <div id="weatherinfobox"></div>
+
             <h4 id="weathertitle"></h4>
             <div id="futureforecast"></div>
 
             <h4 id="raintitle"></h4>
             <div id="futurerain"></div>
 
-
-           
         </div>
 
     </main>

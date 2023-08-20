@@ -66,6 +66,7 @@ function printweater_ll(data) {
      Humidity: ${Math.round(data.list[0].main.humidity)}% 
      `;
 
+
     weathertitleel.innerHTML =
         `
             Weather: 

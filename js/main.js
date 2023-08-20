@@ -81,8 +81,11 @@ function getHeaderdate() {
 
 // menu dropdown
 
-function myFunction() {
-    var x = document.getElementById("myLinks");
+var x = document.getElementById("myLinks");
+var mainel = document.getElementById("main");
+mainel.addEventListener("click", closeDropdown);
+
+function openDropdown() {
     if (x.style.display === "block") {
         x.style.display = "none";
     } else {
@@ -90,4 +93,10 @@ function myFunction() {
     }
 }
 
+function closeDropdown() {
+
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } 
+}
 
